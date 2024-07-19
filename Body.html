@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Online</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header>
+        <h1>Perpustakaan Online</h1>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Cari buku...">
+            <button onclick="searchBooks()">Cari</button>
+        </div>
+    </header>
+    
+    <main>
+        <section id="collection">
+            <h2>Koleksi Buku</h2>
+            <ul id="book-list">
+                <script>
+                    // Data buku
+                    var books = [
+                        { title: "Harry Potter dan Batu Bertuah", author: "J.K. Rowling", link: "https://www.contohlinkbuku.com/harrypotter" },
+                        { title: "Laskar Pelangi", author: "Andrea Hirata", link: "https://www.contohlinkbuku.com/laskarpelangi" },
+                        { title: "Ayat-Ayat Cinta", author: "Habiburrahman El-Shirazy", link: "https://www.contohlinkbuku.com/ayatayatcinta" },
+                        { title: "Cerita Anak Hebat", author: "Tim Penulis Buku Anak Jatim", link: "https://www.google.co.id/books/edition/Cerita_Anak_Hebat/MMtGDwAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "Kumpulan Cerita Anak Hebat", author: "Mulasih Tary", link: "https://www.google.co.id/books/edition/Kumpulan_Cerita_Anak_Hebat/rdI3EAAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "Proses Kreasi Ilustrasi Serial Buku Cerita Anak Lovely", author: "Hanum Ayuningtyas", link: "https://www.google.co.id/books/edition/Proses_Kreasi_Ilustrasi_Serial_Buku_Ceri/tnVdEAAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "Kumpulan Dongeng untuk Anak", author: "Stella Ernes", link: "https://www.google.co.id/books/edition/Kumpulan_Dongeng_untuk_Anak_1/tkIHEAAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "Kumpulan Cerita Anak Cerdas", author: "Durroh FUadin K", link: "https://www.google.co.id/books/edition/Kumpulan_Cerita_Anak_Cerdas/wvvrDwAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "25 Dongeng Klasik Dunia", author: "Klara Valerie", link: "https://www.google.co.id/books/edition/25_Dongeng_Klasik_Dunia/0c5BDwAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "Cerita Rakyat Nusantara 34 Provinsi", author: "Dini Ayu", link: "https://www.google.co.id/books/edition/Cerita_Rakyat_Nusantara_34_Provinsi/yjohDAAAQBAJ?hl=id&gbpv=1&dq=buku+cerita+untuk+anak-anak&printsec=frontcover"},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                        { title: "", author: "", link: ""},
+                    ];
+                
+                    // Fungsi untuk menambahkan buku ke dalam daftar
+                    function renderBooks() {
+                        var bookList = document.getElementById('book-list');
+                        bookList.innerHTML = '';
+                
+                        books.forEach(function(book) {
+                            var li = document.createElement('li');
+                            var link = document.createElement('a');
+                            link.textContent = book.title + ' - ' + book.author;
+                            link.href = book.link;
+                            link.target = '_blank'; // Buka link di tab/baru
+                
+                            li.appendChild(link);
+                            bookList.appendChild(li);
+                        });
+                    }
+                
+                    // Panggil fungsi untuk pertama kali
+                    renderBooks();
+
+                    // Fungsi untuk mencari buku
+                    function searchBooks() {
+                        var searchTerm = document.getElementById('search-input').value.toLowerCase();
+                        var filteredBooks = books.filter(function(book) {
+                            return book.title.toLowerCase().includes(searchTerm) || book.author.toLowerCase().includes(searchTerm);
+                        });
+
+                        var bookList = document.getElementById('book-list');
+                        bookList.innerHTML = '';
+
+                        filteredBooks.forEach(function(book) {
+                            var li = document.createElement('li');
+                            var link = document.createElement('a');
+                            link.textContent = book.title + ' - ' + book.author;
+                            link.href = book.link;
+                            link.target = '_blank'; // Buka link di tab/baru
+
+                            li.appendChild(link);
+                            bookList.appendChild(li);
+                        });
+                    }
+                </script>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Perpustakaan Online. KKN Desa Dawuhan Kabupaten Banjarnegara.</p>
+    </footer>
+</body>
+</html>
